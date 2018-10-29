@@ -412,6 +412,12 @@ class OAuth2(providers.AuthorizationProvider):
             response = self._fetch(*request_elements)
             self.access_token_response = response
 
+            logger = logging.getLogger(__name__)
+            logger.warn(repr(response))
+            logger.warn(repr(response.data))
+            logger.warn(repr(response.content))
+            logger.warn(repr(response.msg.dict))
+
             access_token = response.data.get('access_token', '')
             refresh_token = response.data.get('refresh_token', '')
 
